@@ -78,6 +78,7 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         // Listen for when the selection changes.
         tree.addTreeSelectionListener(this);
+        tree.setFont(new FontUIResource("Monospaced", Font.PLAIN, 16));
 
         if (playWithLineStyle) {
             System.out.println("line style = " + lineStyle);
