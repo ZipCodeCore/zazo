@@ -16,6 +16,20 @@
     <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
+<profiles>
+    <profile>
+        <id>dev</id>
+        <properties> 
+            <activated-profile>dev</activated-profile>
+        </properties>
+    </profile>
+    <profile>
+        <id>native</id>
+        <properties> 
+            <activated-profile>native</activated-profile>
+        </properties>
+    </profile>
+</profiles>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -40,6 +54,14 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+    <groupId>org.graalvm.sdk</groupId>
+    <artifactId>graal-sdk</artifactId>
+    <version>20.3.16</version>
+    <scope>provided</scope>
+</dependency>
+
   </dependencies>
 
   <build>
@@ -93,6 +115,60 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
         </plugin>
+        <plugin>
+    <groupId>org.graalvm.nativeimage</groupId>
+    <artifactId>native-image-maven-plugin</artifactId>
+    <version>20.3.16</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>native-image</goal>
+            </goals>
+            <phase>package</phase>
+        </execution>
+    </executions>
+    <configuration>
+        <skip>false</skip>
+        <imageName>zazo</imageName>
+            <mainClass>rocks.zipcode.zazo.Zaso</mainClass>
+        <buildArgs>
+            --no-fallback
+        </buildArgs>
+    </configuration>
+</plugin>
+
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>3.1.1</version>
+    <executions>
+        <execution>
+            <id>java-agent</id>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>java</executable>
+                <workingDirectory>target/</workingDirectory>
+                <arguments>
+                    <argument>-classpath</argument>
+                    <classpath/>
+                    <argument>rocks.zipcode.zazo.Zazo</argument>
+                </arguments>
+            </configuration>
+        </execution>
+        <execution>
+            <id>native</id>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+                <executable>target/${imageName}</executable>
+                <workingDirectory>target/</workingDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
       </plugins>
     </pluginManagement>
   </build>
