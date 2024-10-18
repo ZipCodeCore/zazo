@@ -114,11 +114,11 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
     }
 
     public void insertUpdate(DocumentEvent e) {
-        System.out.println("changing insert");
+        //System.out.println("changing insert");
         hasChanges = true;
     }
     public void removeUpdate(DocumentEvent e) {
-        System.out.println("changing remove");
+        //System.out.println("changing remove");
         hasChanges = true;
     }
     public void changedUpdate(DocumentEvent e) {
@@ -161,10 +161,10 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
 
     private void saveFileIfChanged(String url) {
         if (hasChanges) {
-            System.out.println("Saving file: " + currentFileName);
+            //System.out.println("Saving file: " + currentFileName);
             try  {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(new File(new URI(currentFileName))));
-                System.out.println("File Open For Writing: " + currentFileName);
+                //System.out.println("File Open For Writing: " + currentFileName);
                 writer.write(editorPane.getText());
                 hasChanges = false;
                 writer.close();
@@ -173,7 +173,8 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
                         JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            System.out.println("No changes to save.");
+            ;
+            //System.out.println("No changes to save.");
         }
         currentFileName = url;
     }
