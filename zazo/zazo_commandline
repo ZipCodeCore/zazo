@@ -1,0 +1,3 @@
+# put this in your tilde bin folder
+java -jar ~/bin/zazo-1.0-SNAPSHOT.jar
+# you do a have a tilde-bin (~/bin/) folder for your scripts, right?

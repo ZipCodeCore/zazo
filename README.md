@@ -38,4 +38,7 @@ mvn clean package
 java -cp target/zazo-1.0-SNAPSHOT.jar rocks.zipcode.zazo.Zazo
 ```
 
+see zazo/zazo.sh for a simple shell script to run the app.
+(well, it's called zazo_commandline but you get the idea)
+
 And you have a small, simple IDE. Enjoy!
