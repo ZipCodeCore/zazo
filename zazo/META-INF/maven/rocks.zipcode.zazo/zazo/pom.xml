@@ -100,7 +100,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>rocks.zipcode.zazo.Zazo</mainClass>
+            <mainClass>rocks.zipcode.zazo.ZazoFX</mainClass>
           </manifest>
         </archive>
       </configuration>
@@ -160,7 +160,7 @@
                 <arguments>
                     <argument>-classpath</argument>
                     <classpath/>
-                    <argument>java.rocks.zipcode.zazo.Zazo</argument>
+                    <argument>java.rocks.zipcode.zazo.ZazoFX</argument>
                 </arguments>
             </configuration>
         </execution>
