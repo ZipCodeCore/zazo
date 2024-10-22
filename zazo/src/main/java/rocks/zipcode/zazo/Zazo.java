@@ -1,4 +1,4 @@
-package java.rocks.zipcode.zazo;
+package rocks.zipcode.zazo;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -62,10 +62,6 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
     private String currentFileName = "";
     private boolean hasChanges = false;
 
-    // Optionally play with line styles. Possible values are
-    // "Angled" (the default), "Horizontal", and "None".
-    private static boolean playWithLineStyle = false;
-    private static String lineStyle = "Horizontal";
 
     // Optionally set the look and feel.
     private static boolean useSystemLookAndFeel = false;
@@ -80,11 +76,6 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
         tree.addTreeSelectionListener(this);
         tree.setFont(new FontUIResource("Monospaced", Font.PLAIN, 16));
 
-        if (playWithLineStyle) {
-            System.out.println("line style = " + lineStyle);
-            tree.putClientProperty("JTree.lineStyle", lineStyle);
-        }
-
         // Create the scroll pane and add the tree to it.
         JScrollPane treeView = new JScrollPane(tree);
 
@@ -94,7 +85,6 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
         editorPane.setFont(new FontUIResource("Monospaced", Font.PLAIN, 16));
         editorPane.setMargin(new Insets(5, 5, 5, 5));
 
-        
         // put editor in scroll pane
         JScrollPane editorView = new JScrollPane(editorPane);
 
@@ -132,7 +122,6 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
 
         if (node == null)
             return;
-
         Object nodeInfo = node.getUserObject();
         if (node.isLeaf()) {
             displayFile(((File) nodeInfo).toURI().toString());
@@ -161,10 +150,14 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
 
     private void saveFileIfChanged(String url) {
         if (hasChanges) {
-            //System.out.println("Saving file: " + currentFileName);
+            if (DEBUG) {
+                System.out.println("Saving file: " + currentFileName);
+            }
             try  {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(new File(new URI(currentFileName))));
-                //System.out.println("File Open For Writing: " + currentFileName);
+                if (DEBUG) {
+                    System.out.println("File Open For Writing: " + currentFileName);
+                }
                 writer.write(editorPane.getText());
                 hasChanges = false;
                 writer.close();
@@ -173,8 +166,9 @@ public class Zazo extends JPanel implements TreeSelectionListener, DocumentListe
                         JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            ;
-            //System.out.println("No changes to save.");
+            if (DEBUG) {
+                System.out.println("No changes to save.");
+            }
         }
         currentFileName = url;
     }

@@ -1,4 +1,4 @@
-package java.rocks.zipcode.zazo;
+package rocks.zipcode.zazo;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
