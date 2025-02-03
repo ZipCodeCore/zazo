@@ -5,9 +5,12 @@ pronounced: zah-zoh
 
 The `nano` of IDEs. A simple example of an IDE in Java (220 lines of java and swing and awt).
 
-This repo and https://github.com/ZipCodeCore/ZazoFX
- _How about a SwiftUI Mac app, with very simple sets of Command- mac keystrokes?_
- _Edit menu, file menu, find menu_
+This repo and https://github.com/ZipCodeCore/ZazoFX.
+
+_How about a SwiftUI Mac app, with very simple sets of Command- mac keystrokes?_
+
+_Edit menu, file menu, find menu_
+
 `zazo` is meant to be a simple example of how to build an IDE in Java. It is not meant to be a full-featured IDE. It is meant to be a simple example of how to build an IDE in Java.
 
 This is a VERY small IDE. It has two main UI concepts.
